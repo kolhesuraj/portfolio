@@ -1,3 +1,208 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  /* ── Page background ── */
+  .page-bg {
+    background: linear-gradient(150deg, #f0f9ff 0%, #fafafa 45%, #faf5ff 100%);
+  }
+  .dark .page-bg {
+    background: #020817;
+  }
+
+  /* ── Animated cyber grid background (dark) ── */
+  .cyber-grid {
+    background-image:
+      linear-gradient(rgba(6, 182, 212, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(6, 182, 212, 0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: grid-shift 40s linear infinite;
+  }
+
+  /* ── Diagonal lines background (light) ── */
+  .cyber-grid-light {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      rgba(139, 92, 246, 0.05) 0px,
+      rgba(139, 92, 246, 0.05) 1px,
+      transparent 1px,
+      transparent 24px
+    );
+  }
+
+  /* ── Glass morphism ── */
+  .glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  /* Light mode glass */
+  .glass-light {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  /* ── Gradient text ── */
+  .text-gradient {
+    background: linear-gradient(135deg, #06b6d4 0%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-alt {
+    background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-emerald {
+    background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── Glow effects ── */
+  .glow-cyan {
+    box-shadow:
+      0 0 0 1px rgba(6, 182, 212, 0.2),
+      0 0 30px rgba(6, 182, 212, 0.08),
+      inset 0 0 30px rgba(6, 182, 212, 0.03);
+  }
+
+  .glow-violet {
+    box-shadow:
+      0 0 0 1px rgba(139, 92, 246, 0.2),
+      0 0 30px rgba(139, 92, 246, 0.08),
+      inset 0 0 30px rgba(139, 92, 246, 0.03);
+  }
+
+  /* ── Skill pill ── */
+  .skill-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    cursor: default;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--s-b, #e2e8f0);
+    transition: all 0.25s ease;
+  }
+
+  .skill-pill:hover {
+    background: #f8fafc;
+    border-color: var(--s-bh, rgba(6, 182, 212, 0.6));
+    box-shadow: 0 0 18px var(--s-g, rgba(6, 182, 212, 0.15));
+  }
+
+  /* dark mode overrides */
+  .dark .skill-pill {
+    background: rgba(30, 41, 59, 0.6);
+    border-color: var(--s-bd, rgba(255, 255, 255, 0.1));
+  }
+
+  .dark .skill-pill:hover {
+    background: rgba(15, 23, 42, 0.8);
+    border-color: var(--s-bh, rgba(6, 182, 212, 0.5));
+    box-shadow: 0 0 22px var(--s-g, rgba(6, 182, 212, 0.15));
+  }
+
+  /* ── Nav link underline ── */
+  .nav-link {
+    position: relative;
+    font-size: 0.8125rem;
+    color: #94a3b8;
+    transition: color 0.2s ease;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: linear-gradient(90deg, #06b6d4, #8b5cf6);
+    transition: width 0.25s ease;
+  }
+
+  .nav-link:hover {
+    color: #22d3ee;
+  }
+
+  html:not(.dark) .nav-link:hover {
+    color: #0891b2;
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  /* ── Typewriter blink ── */
+  .animate-blink {
+    animation: blink 1s step-end infinite;
+  }
+
+  /* ── Floating orbs ── */
+  .animate-float {
+    animation: float 10s ease-in-out infinite;
+  }
+
+  .animate-float-slow {
+    animation: float 14s ease-in-out 3s infinite;
+  }
+
+  .animate-float-slower {
+    animation: float 18s ease-in-out 6s infinite;
+  }
+
+  /* ── Timeline ── */
+  .timeline-line {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(
+      to bottom,
+      rgba(6, 182, 212, 0.6),
+      rgba(139, 92, 246, 0.4),
+      rgba(139, 92, 246, 0.1),
+      transparent
+    );
+  }
+}
+
+/* ── Keyframes ── */
+@keyframes grid-shift {
+  0% { background-position: 0 0; }
+  100% { background-position: 60px 60px; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-28px); }
+}

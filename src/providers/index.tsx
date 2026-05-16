@@ -8,8 +8,6 @@ import { Toaster } from "@/components/ui/toaster";
 
 const APP_ENV = import.meta.env.VITE_APP_ENV;
 
-// eslint-disable-next-line react-refresh/only-export-components
-
 const ErrorFallback = ({ error }: FallbackProps) => {
   const err = error as Error;
   console.log("error", err.stack);

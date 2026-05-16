@@ -817,7 +817,6 @@ export async function batchExecutor<T>(
   let completed = 0;
 
   const workers = new Array(concurrency).fill(null).map(async () => {
-    // eslint-disable-next-line no-constant-condition
     while (true) {
       const currentIndex = index++;
       if (currentIndex >= tasks.length) break;

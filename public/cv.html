@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Suraj Kolhe – CV</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: #1e293b;
+      background: #f8fafc;
+    }
+
+    .page {
+      max-width: 860px;
+      margin: 32px auto;
+      background: #fff;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.10);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    /* ── Header ── */
+    .header {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);
+      color: #fff;
+      padding: 36px 40px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 24px;
+    }
+    .header-left h1 {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      color: #fff;
+    }
+    .header-left .title {
+      font-size: 13px;
+      font-weight: 500;
+      color: #67e8f9;
+      margin-top: 4px;
+      letter-spacing: 0.06em;
+    }
+    .header-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 5px;
+    }
+    .header-right a,
+    .header-right span {
+      font-size: 11.5px;
+      color: #bae6fd;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .header-right a:hover { color: #e0f2fe; }
+    .dot { width: 4px; height: 4px; background: #38bdf8; border-radius: 50%; display: inline-block; }
+
+    /* ── Body layout ── */
+    .body { display: grid; grid-template-columns: 220px 1fr; }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      background: #f1f5f9;
+      padding: 28px 20px;
+      border-right: 1px solid #e2e8f0;
+    }
+
+    /* ── Main ── */
+    .main { padding: 28px 32px; }
+
+    /* ── Section titles ── */
+    .section { margin-bottom: 22px; }
+    .section:last-child { margin-bottom: 0; }
+
+    .section-title {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #0891b2;
+      border-bottom: 1.5px solid #e0f2fe;
+      padding-bottom: 5px;
+      margin-bottom: 12px;
+    }
+    .sidebar .section-title { border-bottom-color: #cbd5e1; color: #475569; }
+
+    /* ── Skills ── */
+    .skill-group { margin-bottom: 10px; }
+    .skill-group .group-label {
+      font-size: 10px;
+      font-weight: 700;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 5px;
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+    .skill-tag {
+      font-size: 10.5px;
+      padding: 2px 8px;
+      border-radius: 99px;
+      background: #e0f2fe;
+      color: #0369a1;
+      border: 1px solid #bae6fd;
+      font-weight: 500;
+    }
+    .skill-tag.green  { background: #dcfce7; color: #15803d; border-color: #86efac; }
+    .skill-tag.purple { background: #f3e8ff; color: #7e22ce; border-color: #d8b4fe; }
+    .skill-tag.amber  { background: #fef3c7; color: #92400e; border-color: #fcd34d; }
+    .skill-tag.slate  { background: #f1f5f9; color: #475569; border-color: #cbd5e1; }
+    .skill-tag.red    { background: #fee2e2; color: #991b1b; border-color: #fca5a5; }
+
+    /* ── Education (sidebar) ── */
+    .edu-item { margin-bottom: 12px; }
+    .edu-degree {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #1e293b;
+    }
+    .edu-meta {
+      font-size: 11px;
+      color: #64748b;
+      margin-top: 1px;
+    }
+    .edu-score {
+      font-size: 11px;
+      color: #0891b2;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    /* ── Certification ── */
+    .cert-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #1e293b;
+    }
+    .cert-badge {
+      width: 22px;
+      height: 22px;
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      flex-shrink: 0;
+    }
+
+    /* ── Summary ── */
+    .summary {
+      font-size: 13px;
+      color: #334155;
+      line-height: 1.65;
+    }
+
+    /* ── Experience ── */
+    .exp-item { margin-bottom: 18px; }
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 2px;
+    }
+    .exp-company {
+      font-size: 14px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .exp-period {
+      font-size: 10.5px;
+      font-weight: 600;
+      color: #64748b;
+      background: #f1f5f9;
+      padding: 2px 9px;
+      border-radius: 99px;
+      white-space: nowrap;
+      border: 1px solid #e2e8f0;
+      flex-shrink: 0;
+    }
+    .exp-role {
+      font-size: 12px;
+      font-weight: 600;
+      color: #0891b2;
+      margin-bottom: 7px;
+    }
+    .exp-list { list-style: none; padding: 0; }
+    .exp-list li {
+      position: relative;
+      padding-left: 14px;
+      font-size: 12.5px;
+      color: #475569;
+      margin-bottom: 4px;
+      line-height: 1.5;
+    }
+    .exp-list li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: #0891b2;
+      font-size: 10px;
+      top: 1px;
+    }
+
+    /* ── Projects ── */
+    .proj-item { margin-bottom: 14px; }
+    .proj-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 3px;
+    }
+    .proj-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .proj-link {
+      font-size: 10.5px;
+      color: #0891b2;
+      text-decoration: none;
+    }
+    .proj-link:hover { text-decoration: underline; }
+    .proj-tech { display: flex; flex-wrap: wrap; gap: 3px; margin-bottom: 5px; }
+    .proj-tag {
+      font-size: 9.5px;
+      padding: 1.5px 7px;
+      border-radius: 99px;
+      background: #f0fdf4;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+      font-weight: 500;
+    }
+    .proj-list { list-style: none; padding: 0; }
+    .proj-list li {
+      position: relative;
+      padding-left: 14px;
+      font-size: 12px;
+      color: #475569;
+      margin-bottom: 3px;
+      line-height: 1.45;
+    }
+    .proj-list li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: #7c3aed;
+      font-size: 10px;
+      top: 1px;
+    }
+
+    /* ── Print ── */
+    @media print {
+      body { background: #fff; font-size: 12.5px; }
+      .page { margin: 0; box-shadow: none; border-radius: 0; max-width: 100%; }
+      a { color: inherit !important; text-decoration: none !important; }
+      @page { margin: 0.5in; size: A4; }
+    }
+
+    /* ── Print button ── */
+    .print-bar {
+      text-align: center;
+      padding: 12px;
+      background: #f8fafc;
+    }
+    .print-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 22px;
+      background: linear-gradient(135deg, #0891b2, #6d28d9);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      letter-spacing: 0.02em;
+      transition: opacity 0.2s;
+    }
+    .print-btn:hover { opacity: 0.88; }
+    @media print { .print-bar { display: none; } }
+  </style>
+</head>
+<body>
+
+<div class="print-bar">
+  <button class="print-btn" onclick="window.print()">
+    ⬇ Save as PDF
+  </button>
+</div>
+
+<div class="page">
+
+  <!-- ── Header ── -->
+  <div class="header">
+    <div class="header-left">
+      <h1>SURAJ KOLHE</h1>
+      <div class="title">FULL-STACK DEVELOPER &nbsp;·&nbsp; NODE.JS &nbsp;·&nbsp; REACT &nbsp;·&nbsp; JAVA</div>
+    </div>
+    <div class="header-right">
+      <a href="mailto:surajkolhe214@gmail.com"><span class="dot"></span>surajkolhe214@gmail.com</a>
+      <a href="mailto:suraj.r.kolhe@zohomail.com"><span class="dot"></span>suraj.r.kolhe@zohomail.com</a>
+      <span><span class="dot"></span>+91 7219550690</span>
+      <a href="https://github.com/kolhesuraj" target="_blank"><span class="dot"></span>github.com/kolhesuraj</a>
+      <a href="https://in.linkedin.com/in/suraj-kolhe" target="_blank"><span class="dot"></span>linkedin.com/in/suraj-kolhe</a>
+    </div>
+  </div>
+
+  <!-- ── Body ── -->
+  <div class="body">
+
+    <!-- ── Sidebar ── -->
+    <div class="sidebar">
+
+      <!-- Skills -->
+      <div class="section">
+        <div class="section-title">Technical Skills</div>
+
+        <div class="skill-group">
+          <div class="group-label">Languages</div>
+          <div class="skill-tags">
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">TypeScript</span>
+            <span class="skill-tag red">Java</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="group-label">Frontend</div>
+          <div class="skill-tags">
+            <span class="skill-tag">React</span>
+            <span class="skill-tag red">Angular</span>
+            <span class="skill-tag slate">Next.js</span>
+            <span class="skill-tag">Tailwind CSS</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="group-label">Backend</div>
+          <div class="skill-tags">
+            <span class="skill-tag green">Node.js</span>
+            <span class="skill-tag green">Express</span>
+            <span class="skill-tag green">Spring Boot</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="group-label">Databases</div>
+          <div class="skill-tags">
+            <span class="skill-tag">PostgreSQL</span>
+            <span class="skill-tag green">MongoDB</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="group-label">Cloud &amp; DevOps</div>
+          <div class="skill-tags">
+            <span class="skill-tag amber">AWS ★</span>
+            <span class="skill-tag">Azure</span>
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag slate">Git</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Education -->
+      <div class="section">
+        <div class="section-title">Education</div>
+
+        <div class="edu-item">
+          <div class="edu-degree">Master of Computer Applications (MCA)</div>
+          <div class="edu-meta">PES Modern College, Pune<br>Savitribai Phule Pune University</div>
+          <div class="edu-meta">June 2022 – March 2024</div>
+          <div class="edu-score">70.46% &nbsp;·&nbsp; Grade A</div>
+        </div>
+
+        <div class="edu-item">
+          <div class="edu-degree">Bachelor of Computer Applications (BCA)</div>
+          <div class="edu-meta">PES Modern College, Pune<br>Savitribai Phule Pune University</div>
+          <div class="edu-meta">June 2019 – March 2022</div>
+          <div class="edu-score">70.46% &nbsp;·&nbsp; Grade A</div>
+        </div>
+      </div>
+
+      <!-- Certifications -->
+      <div class="section">
+        <div class="section-title">Certifications</div>
+        <div class="cert-item">
+          <div class="cert-badge">AWS</div>
+          <span>AWS Certified Cloud Graduate</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── Main ── -->
+    <div class="main">
+
+      <!-- Summary -->
+      <div class="section">
+        <div class="section-title">Professional Summary</div>
+        <p class="summary">
+          Full-stack developer with 3+ years of professional experience building scalable web and cloud applications.
+          Specializes in JavaScript, TypeScript, Node.js, React, Java, and Spring Boot, with hands-on experience
+          designing REST APIs, implementing RBAC, and architecting cloud-integrated systems on AWS and Azure.
+          Strong focus on backend performance, database design (PostgreSQL, MongoDB), and delivering clean,
+          maintainable code in collaborative agile environments.
+        </p>
+      </div>
+
+      <!-- Experience -->
+      <div class="section">
+        <div class="section-title">Experience</div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-company">Angular Minds Pvt Ltd</span>
+            <span class="exp-period">July 2022 – Present</span>
+          </div>
+          <div class="exp-role">Full-Stack Developer</div>
+          <ul class="exp-list">
+            <li>Developed and maintained production web applications using React, Angular, and Node.js, serving real-world enterprise clients.</li>
+            <li>Designed and implemented REST APIs with JWT-based authentication, RBAC middleware, and role-level authorization across multiple modules.</li>
+            <li>Built cloud-integrated solutions on AWS and Azure, including multi-account cost monitoring, resource scanning, and automated billing pipelines.</li>
+            <li>Optimized backend services for performance at scale using PostgreSQL query tuning, connection pooling, and scheduled background jobs.</li>
+            <li>Implemented responsive, accessible frontend interfaces adhering to design systems and cross-device compatibility standards.</li>
+            <li>Participated in code reviews, mentored junior developers, and contributed to engineering standards across the team.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Projects -->
+      <div class="section">
+        <div class="section-title">Key Projects</div>
+
+        <div class="proj-item">
+          <div class="proj-header">
+            <span class="proj-name">Moneta – Cloud Monitoring &amp; Billing System</span>
+            <a class="proj-link" href="https://monetacloud.com" target="_blank">monetacloud.com ↗</a>
+          </div>
+          <div class="proj-tech">
+            <span class="proj-tag">React</span>
+            <span class="proj-tag">Node.js</span>
+            <span class="proj-tag">Express</span>
+            <span class="proj-tag">PostgreSQL</span>
+            <span class="proj-tag">AWS SDK v3</span>
+            <span class="proj-tag">Azure API</span>
+            <span class="proj-tag">TypeScript</span>
+          </div>
+          <ul class="proj-list">
+            <li>Built a cloud cost optimization platform processing billing and usage data across multi-account, multi-region AWS and Azure environments.</li>
+            <li>Automated scanners for unused and abandoned cloud resources using cross-account IAM roles and parallel region-aware discovery.</li>
+            <li>Delivered React dashboards with data aggregation pipelines, RBAC, and performance-optimized reporting APIs.</li>
+          </ul>
+        </div>
+
+        <div class="proj-item">
+          <div class="proj-header">
+            <span class="proj-name">Parental Control Application</span>
+          </div>
+          <div class="proj-tech">
+            <span class="proj-tag">Next.js</span>
+            <span class="proj-tag">React Native</span>
+            <span class="proj-tag">Node.js</span>
+            <span class="proj-tag">Express</span>
+            <span class="proj-tag">PostgreSQL</span>
+          </div>
+          <ul class="proj-list">
+            <li>Built a cross-platform parental control app with secure parent–child account linking and supervised access control.</li>
+            <li>Implemented JWT authentication, role separation, and real-time usage reports with configurable screen-time restrictions.</li>
+          </ul>
+        </div>
+
+        <div class="proj-item">
+          <div class="proj-header">
+            <span class="proj-name">AM Books – Enterprise Management System</span>
+            <a class="proj-link" href="https://books.angularminds.com" target="_blank">books.angularminds.com ↗</a>
+          </div>
+          <div class="proj-tech">
+            <span class="proj-tag">Angular</span>
+            <span class="proj-tag">Node.js</span>
+            <span class="proj-tag">Express</span>
+            <span class="proj-tag">MongoDB</span>
+            <span class="proj-tag">Sequelize</span>
+          </div>
+          <ul class="proj-list">
+            <li>Full-stack enterprise system with RBAC, admin-managed permission mapping, and invoice/quotation generation.</li>
+            <li>Built automated email notifications via scheduled jobs and interactive dashboards with real-time employee status insights.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -27,7 +27,7 @@ const handleResponse = (response: AxiosResponse<string, unknown>) => {
 
 const handleError = (error: AxiosError | Error): never => {
   if ("response" in error && error.response) {
-    if (error.response?.data?.error?.code === 429) {
+    if ((error.response?.data as Record<string, any>)?.error?.code === 429) {
       throw new ApiError(
         "Too many requests. Please Retry after 30 seconds.",
         "429",
@@ -166,14 +166,15 @@ const apiRequest = async (
   try {
     const response = await axios(config);
     return handleResponse(response);
-  } catch (error: AxiosError | Error) {
-    if (error?.response?.status === 401) {
+  } catch (error) {
+    const axiosError = error as AxiosError;
+    if (axiosError?.response?.status === 401) {
       logout();
       if (window.location.pathname !== "/auth/login") {
         window.location.href = "/auth/login";
       }
     }
-    handleError(error);
+    handleError(axiosError);
   }
 };
 

@@ -7,15 +7,18 @@ import {
   SiPostgresql,
   SiReact,
   SiTypescript,
+  SiSpring,
+  SiMongodb,
 } from "react-icons/si";
+import { FaJava } from "react-icons/fa";
 
 export const YOUR_NAME = "SURAJ KOLHE";
 export const TAGLINE = "Full-Stack Developer • Node.js • React • Angular ";
-export const BIO = `Full-stack developer building scalable web and cloud applications with Node.js, Angular, React, Express, AWS, and Azure.`;
+export const BIO = `Full-stack developer building scalable web and cloud applications with Node.js, React, Java, Spring Boot, MongoDB, PostgreSQL, AWS, and Azure.`;
 export const ABOUT =
-  "Full-stack developer specializing in JavaScript, Node.js, and React, with hands-on experience in designing REST APIs, implementing RBAC, and building cloud-integrated applications on AWS and Azure. Strong focus on backend architecture, performance optimization, and scalable system design.";
+  "Full-stack developer specializing in JavaScript, TypeScript, Node.js, React, Java, and Spring Boot, with hands-on experience in designing REST APIs, database design with PostgreSQL and MongoDB, implementing RBAC, and building cloud-integrated applications on AWS and Azure. Strong focus on backend architecture, performance optimization, and scalable system design.";
 export const START_OF_CAREER = new Date("07/20/2022");
-export const RESUME_LINK = "#";
+export const RESUME_LINK = "/cv.html";
 export const SOCIALS: Array<{
   name: string;
   href: string;
@@ -101,42 +104,18 @@ export const SKILLS: Array<{
   name: string;
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   logo: string;
+  color: string;
 }> = [
-  {
-    name: "JavaScript",
-    icon: SiJavascript,
-    logo: "src/assets/javascript.svg",
-  },
-  {
-    name: "TypeScript",
-    icon: SiTypescript,
-    logo: "src/assets/typescript.svg",
-  },
-  {
-    name: "React",
-    icon: SiReact,
-    logo: "src/assets/react.svg",
-  },
-  {
-    name: "Node.js",
-    icon: SiNodedotjs,
-    logo: "src/assets/nodejs.svg",
-  },
-  {
-    name: "PostgreSQL",
-    icon: SiPostgresql,
-    logo: "src/assets/postgresql.svg",
-  },
-  {
-    name: "AWS",
-    icon: SiAmazonwebservices,
-    logo: "src/assets/amazonwebservices.svg",
-  },
-  {
-    name: "Docker",
-    icon: SiDocker,
-    logo: "src/assets/docker.svg",
-  },
+  { name: "JavaScript", icon: SiJavascript, logo: "src/assets/javascript.svg", color: "#F7DF1E" },
+  { name: "TypeScript", icon: SiTypescript, logo: "src/assets/typescript.svg", color: "#3178C6" },
+  { name: "React",      icon: SiReact,      logo: "src/assets/react.svg",       color: "#00D8FF" },
+  { name: "Node.js",    icon: SiNodedotjs,  logo: "src/assets/nodejs.svg",      color: "#68A063" },
+  { name: "Java",       icon: FaJava,       logo: "",                            color: "#007396" },
+  { name: "Spring Boot",icon: SiSpring,     logo: "",                            color: "#6DB33F" },
+  { name: "PostgreSQL", icon: SiPostgresql, logo: "src/assets/postgresql.svg",  color: "#336791" },
+  { name: "MongoDB",    icon: SiMongodb,    logo: "",                            color: "#47A248" },
+  { name: "AWS ★",      icon: SiAmazonwebservices, logo: "src/assets/amazonwebservices.svg", color: "#E8831A" },
+  { name: "Docker",     icon: SiDocker,     logo: "src/assets/docker.svg",      color: "#2496ED" },
 ];
 
 export const CERTIFICATIONS: Array<{
@@ -220,8 +199,10 @@ export const EDUCATION: Array<education> = [
 
 export const CONTACT: {
   email: string;
+  email2: string;
   mobile: string;
 } = {
   email: "surajkolhe214@gmail.com",
+  email2: "suraj.r.kolhe@zohomail.com",
   mobile: "+91 7219550690",
 };
