@@ -11,7 +11,6 @@ import {
 } from "react-icons/fi";
 
 import { calculateExperience } from "@/utils/date";
-import AnimatedCursor from "@/components/ui/animatedCursor";
 
 import ExperienceCard from "./components/experience-card";
 import ProjectCard from "./components/project-cards";
@@ -152,8 +151,6 @@ export default function PortFolio() {
 
   return (
     <div className="min-h-screen page-bg text-slate-900 dark:text-slate-100 antialiased overflow-x-hidden transition-colors duration-300">
-      <AnimatedCursor />
-
       {/* ── Animated background – light mode ── */}
       <div className="fixed inset-0 pointer-events-none z-0 dark:hidden">
         <div className="absolute inset-0 cyber-grid-light" />
