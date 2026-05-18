@@ -24,8 +24,8 @@ function AnimatedCursor() {
       className="
         pointer-events-none fixed z-[1000] w-4 h-4 rounded-full 
         transition-transform duration-75 
-        bg-black/70 border border-black/50 shadow-sm
-        dark:bg-indigo-400 dark:border-indigo-300 dark:shadow-[0_0_10px_rgba(99,102,241,0.7)] hidden md:block
+        bg-cyan-500/70 border border-cyan-400/60 shadow-sm shadow-cyan-500/30
+        dark:bg-cyan-400 dark:border-cyan-300 dark:shadow-[0_0_10px_rgba(6,182,212,0.7)] hidden md:block
       "
     />
   );

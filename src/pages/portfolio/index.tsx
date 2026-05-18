@@ -32,11 +32,12 @@ import {
 
 // ─── Typewriter hook ───────────────────────────────────────────
 const ROLES = [
+  "Backend Engineer",
+  "JAVA Developer",
   "Full-Stack Developer",
   "Node.js Engineer",
   "React Specialist",
   "Cloud Solutions Architect",
-  "Backend Engineer",
 ];
 
 function useTypewriter(
