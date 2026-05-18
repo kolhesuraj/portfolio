@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f2744"/>
+      <stop offset="100%" stop-color="#1e0b3a"/>
+    </linearGradient>
+    <linearGradient id="textg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <linearGradient id="borderg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0.7"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Dark background -->
+  <rect width="32" height="32" rx="7" fill="url(#bg)"/>
+
+  <!-- Gradient border -->
+  <rect x="0.8" y="0.8" width="30.4" height="30.4" rx="6.4" fill="none" stroke="url(#borderg)" stroke-width="1.4"/>
+
+  <!-- Code brackets -->
+  <path d="M8 10 L5 16 L8 22" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M24 10 L27 16 L24 22" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+  <!-- SK initials centered -->
+  <text x="16" y="21" font-family="Arial Black, Arial, sans-serif" font-size="10" font-weight="900" fill="url(#textg)" text-anchor="middle" letter-spacing="-0.5">SK</text>
+</svg>
