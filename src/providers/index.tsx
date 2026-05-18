@@ -2,7 +2,7 @@ import Button from "@/components/ui/button";
 import { Suspense, useEffect, useState } from "react";
 import { ErrorBoundary, FallbackProps } from "react-error-boundary";
 import { HelmetProvider } from "react-helmet-async";
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import ThemeProvider, { UserTheme } from "./theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 
@@ -80,7 +80,7 @@ export default function AppProvider({
   return (
     <Suspense>
       <HelmetProvider>
-        <BrowserRouter>
+        <HashRouter>
           <ErrorBoundary FallbackComponent={ErrorFallback}>
             {!themeReady ? (
               <div className="flex h-screen items-center justify-center">
@@ -98,7 +98,7 @@ export default function AppProvider({
               {children}
             </ThemeProvider>
           </ErrorBoundary>
-        </BrowserRouter>
+        </HashRouter>
       </HelmetProvider>
     </Suspense>
   );
