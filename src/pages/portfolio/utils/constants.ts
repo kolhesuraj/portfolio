@@ -17,8 +17,9 @@ export const TAGLINE = "Full-Stack Developer • Node.js • React • Angular "
 export const BIO = `Full-stack developer building scalable web and cloud applications with Node.js, React, Java, Spring Boot, MongoDB, PostgreSQL, AWS, and Azure.`;
 export const ABOUT =
   "Full-stack developer specializing in JavaScript, TypeScript, Node.js, React, Java, and Spring Boot, with hands-on experience in designing REST APIs, database design with PostgreSQL and MongoDB, implementing RBAC, and building cloud-integrated applications on AWS and Azure. Strong focus on backend architecture, performance optimization, and scalable system design.";
-export const START_OF_CAREER = new Date("07/20/2022");
+export const START_OF_CAREER = new Date("06/20/2022");
 export const RESUME_LINK = "/cv.html";
+export const RESUME_DOWNLOAD = "/Suraj-Kolhe-Resume.pdf";
 export const SOCIALS: Array<{
   name: string;
   href: string;
@@ -59,6 +60,17 @@ export const PROJECTS: Array<{
 }> = [
   {
     id: 1,
+    title: "Clipboard Manager (Linux clipboard history app)",
+    description: [
+      "Built a keyboard-driven clipboard history manager for Linux (GNOME/Wayland) as an Electron desktop app with a React (TypeScript) UI — press Super+Shift+V from any app to browse and paste anything instantly.",
+      "A lightweight background watcher captures clipboard content into a local SQLite database, keeping the last 100 entries with automatic deduplication, pinned items that are never evicted, and fuzzy full-history search.",
+      "Registers a GNOME custom keybinding at startup and simulates the paste keystroke via wtype (Wayland), xdotool (XWayland), or Mutter RemoteDesktop D-Bus as fallback; fully local with no cloud sync, accounts, or telemetry.",
+    ],
+    tech: ["Electron", "React", "TypeScript", "Node.js", "SQLite", "Tailwindcss"],
+    href: "https://clipboardmanager.surajkolhe.com",
+  },
+  {
+    id: 2,
     title: "Moneta (Cloud monitoring and billing system)",
     description: [
       "Built a cloud cost optimization platform using Node.js, AWS SDK v3, and Azure APIs to process billing and usage data across multi-account, multi-region environments.",
@@ -77,7 +89,7 @@ export const PROJECTS: Array<{
     href: "https://monetacloud.com",
   },
   {
-    id: 2,
+    id: 3,
     title: "Parental Control",
     description: [
       "Developed a parental control application using React / React Native and Node.js, enabling secure parent–child account linking and supervised access.",
@@ -88,7 +100,7 @@ export const PROJECTS: Array<{
     href: null,
   },
   {
-    id: 3,
+    id: 4,
     title: "AM Books",
     description: [
       "Built a full-stack enterprise management system using React (TypeScript) for the frontend and Node.js (Express) for REST APIs, with PostgreSQL + Sequelize for data modeling and persistence.",

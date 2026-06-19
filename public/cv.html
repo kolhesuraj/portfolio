@@ -272,7 +272,7 @@
       body { background: #fff; font-size: 12.5px; }
       .page { margin: 0; box-shadow: none; border-radius: 0; max-width: 100%; }
       a { color: inherit !important; text-decoration: none !important; }
-      @page { margin: 0.5in; size: A4; }
+      @page { margin: 0; size: A4; }
     }
 
     /* ── Print button ── */
@@ -419,7 +419,7 @@
       <div class="section">
         <div class="section-title">Professional Summary</div>
         <p class="summary">
-          Full-stack developer with 3+ years of professional experience building scalable web and cloud applications.
+          Full-stack developer with 4+ years of professional experience building scalable web and cloud applications.
           Specializes in JavaScript, TypeScript, Node.js, React, Java, and Spring Boot, with hands-on experience
           designing REST APIs, implementing RBAC, and architecting cloud-integrated systems on AWS and Azure.
           Strong focus on backend performance, database design (PostgreSQL, MongoDB), and delivering clean,
@@ -451,6 +451,26 @@
       <!-- Projects -->
       <div class="section">
         <div class="section-title">Key Projects</div>
+
+        <div class="proj-item">
+          <div class="proj-header">
+            <span class="proj-name">Clipboard Manager – Linux Clipboard History App</span>
+            <a class="proj-link" href="https://clipboardmanager.surajkolhe.com" target="_blank">clipboardmanager.surajkolhe.com ↗</a>
+          </div>
+          <div class="proj-tech">
+            <span class="proj-tag">Electron</span>
+            <span class="proj-tag">React</span>
+            <span class="proj-tag">TypeScript</span>
+            <span class="proj-tag">Node.js</span>
+            <span class="proj-tag">SQLite</span>
+            <span class="proj-tag">Tailwind CSS</span>
+          </div>
+          <ul class="proj-list">
+            <li>Built a keyboard-driven clipboard history manager for Linux (GNOME/Wayland) as an Electron desktop app — Super+Shift+V browses and pastes any past clip instantly.</li>
+            <li>Background watcher stores the last 100 clips in a local SQLite database with deduplication, pinned items, and fuzzy full-history search; fully local with no cloud sync or telemetry.</li>
+            <li>Auto-registers a GNOME custom keybinding and simulates paste via wtype, xdotool, or Mutter D-Bus fallback; distributed as AppImage and .deb packages.</li>
+          </ul>
+        </div>
 
         <div class="proj-item">
           <div class="proj-header">

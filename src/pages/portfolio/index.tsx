@@ -24,6 +24,7 @@ import {
   EXPERIENCES,
   PROJECTS,
   RESUME_LINK,
+  RESUME_DOWNLOAD,
   SKILLS,
   SOCIALS,
   START_OF_CAREER,
@@ -207,11 +208,10 @@ export default function PortFolio() {
               {dark ? <FiSun size={15} /> : <FiMoon size={15} />}
             </button>
             <a
-              href={RESUME_LINK}
-              target="_blank"
-              rel="noreferrer"
+              href={RESUME_DOWNLOAD}
+              download
               className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold bg-gradient-to-r from-cyan-500/15 to-violet-500/15 border border-cyan-500/30 hover:border-cyan-500/60 text-cyan-600 dark:text-cyan-400 transition-all hover:shadow-lg hover:shadow-cyan-500/10"
-              aria-label="View resume">
+              aria-label="Download resume">
               <FiDownload size={13} /> Resume
             </a>
             <button
@@ -236,7 +236,8 @@ export default function PortFolio() {
               </a>
             ))}
             <a
-              href={RESUME_LINK}
+              href={RESUME_DOWNLOAD}
+              download
               className="inline-flex items-center gap-2 text-sm text-cyan-600 dark:text-cyan-400 font-medium"
               aria-label="Download resume">
               <FiDownload size={14} /> Download Resume
