@@ -3,18 +3,21 @@ import { education } from "../utils/constants";
 
 export default function EducationCard({ education }: { education: education }) {
   return (
-    <div className="rounded-xl p-5 border border-slate-200/80 dark:border-white/10 bg-white/70 dark:bg-slate-900/50 hover:border-violet-400/50 hover:shadow-lg hover:shadow-violet-500/10 backdrop-blur-sm transition-all duration-300 h-full flex flex-col">
+    <div className="rounded-xl p-5 border border-blue-300/60 dark:border-blue-500/25 bg-blue-50/40 dark:bg-blue-500/5 hover:border-blue-400/70 hover:shadow-lg hover:shadow-blue-500/10 backdrop-blur-sm transition-all duration-300 flex flex-col">
       {/* Header */}
       <div className="flex items-start justify-between gap-3 mb-4">
         <div className="flex items-center gap-3">
-          <div className="p-2 rounded-lg bg-violet-500/10 border border-violet-500/20 shrink-0">
-            <GraduationCap size={17} className="text-violet-500 dark:text-violet-400" />
+          <div className="p-2 rounded-lg bg-blue-500/10 border border-blue-500/20 shrink-0">
+            <GraduationCap
+              size={17}
+              className="text-blue-500 dark:text-blue-400"
+            />
           </div>
           <div>
-            <h3 className="font-black text-xl text-gradient-alt leading-tight">
+            <h3 className="font-black text-xl bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent leading-tight">
               {education.degree}
             </h3>
-            <div className="text-[11px] font-mono text-slate-400 dark:text-slate-500 mt-0.5">
+            <div className="text-[11px] font-mono text-slate-500 dark:text-slate-400 mt-0.5">
               {education.startDate} — {education.endDte}
             </div>
           </div>
@@ -31,7 +34,7 @@ export default function EducationCard({ education }: { education: education }) {
       </div>
 
       {/* Body */}
-      <div className="border-t border-slate-100 dark:border-white/6 pt-4 space-y-1.5 flex-1">
+      <div className="flex-1">
         <div className="text-sm font-semibold text-slate-700 dark:text-slate-200">
           {education.university}
         </div>

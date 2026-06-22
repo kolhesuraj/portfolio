@@ -133,6 +133,10 @@
     transition: color 0.2s ease;
   }
 
+  html:not(.dark) .nav-link {
+    color: #475569;
+  }
+
   .nav-link::after {
     content: '';
     position: absolute;

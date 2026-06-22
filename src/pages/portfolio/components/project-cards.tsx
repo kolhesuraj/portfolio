@@ -17,8 +17,10 @@ const TECH_COLOR: Record<string, string> = {
   "Bootstrap":    "bg-purple-500/10 border-purple-500/30 text-purple-700 dark:bg-purple-500/10 dark:border-purple-500/30 dark:text-purple-400",
   "MongoDB":      "bg-green-600/10  border-green-600/30  text-green-700  dark:bg-green-600/10  dark:border-green-600/30  dark:text-green-400",
   "TypeScript":   "bg-blue-500/10   border-blue-500/30   text-blue-700   dark:bg-blue-500/10   dark:border-blue-500/30   dark:text-blue-400",
+  "Electron":     "bg-indigo-500/10 border-indigo-500/30 text-indigo-700 dark:bg-indigo-500/10 dark:border-indigo-500/30 dark:text-indigo-400",
+  "SQLite":       "bg-teal-500/10   border-teal-500/30   text-teal-700   dark:bg-teal-500/10   dark:border-teal-500/30   dark:text-teal-400",
 };
-const DEFAULT_TAG = "bg-slate-100 dark:bg-white/4 border-slate-200 dark:border-white/10 text-slate-500 dark:text-slate-500";
+const DEFAULT_TAG = "bg-slate-200/70 dark:bg-white/10 border-slate-300 dark:border-white/15 text-slate-600 dark:text-slate-300";
 
 interface Project {
   id: number;
@@ -80,7 +82,7 @@ export default function ProjectCard({ project }: { project: Project }) {
               {project.title}
               <ExternalLink
                 size={13}
-                className="mt-0.5 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity text-violet-400"
+                className="mt-0.5 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity text-violet-500 dark:text-violet-400"
               />
             </a>
           ) : (
@@ -95,9 +97,9 @@ export default function ProjectCard({ project }: { project: Project }) {
           {project.description.map((desc, i) => (
             <li
               key={i}
-              className="flex items-start gap-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed"
+              className="flex items-start gap-2 text-[13px] text-slate-600 dark:text-slate-300 leading-relaxed"
             >
-              <span className="text-violet-400/70 mt-[3px] shrink-0">▸</span>
+              <span className="text-violet-500 dark:text-violet-400 mt-[5px] shrink-0">▸</span>
               {desc}
             </li>
           ))}

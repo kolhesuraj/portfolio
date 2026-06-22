@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { BadgeCheck, ExternalLink } from "lucide-react";
 import {
   FiMoon,
   FiSun,
@@ -15,10 +16,15 @@ import { calculateExperience } from "@/utils/date";
 import ExperienceCard from "./components/experience-card";
 import ProjectCard from "./components/project-cards";
 import EducationCard from "./components/education-cards";
+import CertificationCard from "./components/certification-card";
+import AwardCard from "./components/award-card";
 
 import {
   ABOUT,
+  AWARDS,
   BIO,
+  CERTIFICATIONS,
+  CREDLY_URL,
   CONTACT,
   EDUCATION,
   EXPERIENCES,
@@ -29,95 +35,32 @@ import {
   SOCIALS,
   START_OF_CAREER,
   YOUR_NAME,
+  TL_LINE_X,
+  TL_ROW_PAD,
+  TL_DATE_COL,
+  MONTHS,
+  ROLES,
+  NAV_LINKS,
+  fadeUp,
 } from "./utils/constants";
+import TimelineRow from "./components/time-line";
+import useTypewriter from "./utils/type-writer";
+import Divider from "./components/diider";
 
-// ─── Typewriter hook ───────────────────────────────────────────
-const ROLES = [
-  "Backend Engineer",
-  "JAVA Developer",
-  "Full-Stack Developer",
-  "Node.js Engineer",
-  "React Specialist",
-  "Cloud Solutions Architect",
-];
+const MONTH_ABBR = Object.values(MONTHS);
 
-function useTypewriter(
-  words: string[],
-  typingSpeed = 80,
-  deleteSpeed = 45,
-  pauseMs = 2200,
-) {
-  const [wordIndex, setWordIndex] = useState(0);
-  const [charIndex, setCharIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [isPausing, setIsPausing] = useState(false);
-
-  useEffect(() => {
-    if (isPausing) {
-      const t = setTimeout(() => {
-        setIsPausing(false);
-        setIsDeleting(true);
-      }, pauseMs);
-      return () => clearTimeout(t);
-    }
-    const current = words[wordIndex];
-    const delay = isDeleting ? deleteSpeed : typingSpeed;
-    const t = setTimeout(() => {
-      if (!isDeleting && charIndex === current.length) {
-        setIsPausing(true);
-        return;
-      }
-      if (isDeleting && charIndex === 0) {
-        setIsDeleting(false);
-        setWordIndex((i) => (i + 1) % words.length);
-        return;
-      }
-      setCharIndex((c) => c + (isDeleting ? -1 : 1));
-    }, delay);
-    return () => clearTimeout(t);
-  }, [
-    charIndex,
-    isDeleting,
-    isPausing,
-    wordIndex,
-    words,
-    typingSpeed,
-    deleteSpeed,
-    pauseMs,
-  ]);
-
-  return words[wordIndex].slice(0, charIndex);
+// "July 2022" -> "Jul-2022"; "Present" stays "Present"
+function fmtMonthYear(value: string) {
+  const parts = value.trim().split(/\s+/);
+  if (parts.length < 2) return value;
+  const [month, year] = parts;
+  return `${MONTHS[month.toLowerCase()] ?? month.slice(0, 3)}-${year}`;
 }
 
-// ─── Shared variants ──────────────────────────────────────────
-const fadeUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.55 } },
-};
-
-const NAV_LINKS = [
-  { label: "Experience", href: "#experience" },
-  { label: "Projects", href: "#projects" },
-  { label: "Skills", href: "#skills" },
-  { label: "Education", href: "#education" },
-  { label: "Contact", href: "#contact" },
-];
-
-function Divider({
-  color = "cyan",
-}: {
-  color?: "cyan" | "violet" | "emerald";
-}) {
-  const grad = {
-    cyan: "from-transparent via-cyan-500/25 to-transparent",
-    violet: "from-transparent via-violet-500/25 to-transparent",
-    emerald: "from-transparent via-emerald-500/25 to-transparent",
-  }[color];
-  return (
-    <div className="max-w-6xl mx-auto px-6">
-      <div className={`h-px bg-gradient-to-r ${grad}`} />
-    </div>
-  );
+// Current month/year, e.g. "Jun-2026"
+function todayMonthYear() {
+  const now = new Date();
+  return `${MONTH_ABBR[now.getMonth()]}-${now.getFullYear()}`;
 }
 
 // ─── Main ─────────────────────────────────────────────────────
@@ -131,6 +74,7 @@ export default function PortFolio() {
   });
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [lightbox, setLightbox] = useState<string | null>(null);
 
   const roleText = useTypewriter(ROLES);
   const exp = calculateExperience(START_OF_CAREER, new Date());
@@ -150,6 +94,20 @@ export default function PortFolio() {
     window.addEventListener("scroll", handler, { passive: true });
     return () => window.removeEventListener("scroll", handler);
   }, []);
+
+  // Close the image lightbox on Escape; lock scroll while open
+  useEffect(() => {
+    if (!lightbox) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightbox(null);
+    };
+    window.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [lightbox]);
 
   return (
     <div className="min-h-screen page-bg text-slate-900 dark:text-slate-100 antialiased overflow-x-hidden transition-colors duration-300">
@@ -270,7 +228,9 @@ export default function PortFolio() {
               <div className="flex items-center gap-2 font-mono text-lg md:text-xl text-slate-500 dark:text-slate-400 mb-6 h-8">
                 <span className="text-cyan-500 select-none">$</span>
                 <span>{roleText}</span>
-                <span className="animate-blink text-cyan-400 font-bold">▋</span>
+                <span className="animate-blink text-cyan-500 dark:text-cyan-400 font-bold">
+                  ▋
+                </span>
               </div>
 
               <p className="text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl text-sm md:text-base mb-8">
@@ -387,34 +347,85 @@ export default function PortFolio() {
 
         <Divider color="cyan" />
 
-        {/* ════════ EXPERIENCE ════════ */}
+        {/* ════════ EXPERIENCE & EDUCATION ════════ */}
         <section id="experience" className="py-24">
           <div className="max-w-6xl mx-auto px-6">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-80px" }}
-              variants={fadeUp}
-              className="mb-12">
-              <h2 className="text-3xl md:text-4xl font-black text-gradient mb-2">
-                Experience
-              </h2>
-              <p className="text-slate-500 text-sm">
-                Professional journey and key contributions.
-              </p>
-            </motion.div>
+            <div className="relative">
+              {/* Continuous timeline line (cyan → blue) */}
+              <div
+                className={`absolute ${TL_LINE_X} top-3 bottom-2 w-px bg-gradient-to-b from-cyan-500/60 via-blue-500/40 to-blue-500/10`}
+              />
 
-            <div className="relative pl-10">
-              <div className="timeline-line" />
+              {/* Today marker at the top of the line */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5 }}
+                className={`relative ${TL_ROW_PAD} pb-8`}>
+                <span
+                  className={`absolute ${TL_DATE_COL} top-0 text-right whitespace-nowrap text-[10px] sm:text-[11px] font-mono font-semibold text-cyan-600 dark:text-cyan-400`}>
+                  {todayMonthYear()}
+                </span>
+                <span
+                  className={`absolute ${TL_LINE_X} top-1 -translate-x-1/2 w-3.5 h-3.5 rounded-full bg-cyan-400 ring-4 ring-cyan-400/25 animate-pulse`}
+                />
+                <span className="text-xs font-semibold uppercase tracking-[0.15em] text-cyan-600 dark:text-cyan-400">
+                  Present
+                </span>
+              </motion.div>
+
+              {/* Experience heading */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5 }}
+                className={`${TL_ROW_PAD} pb-7 scroll-mt-24`}>
+                <h3 className="text-2xl md:text-3xl font-black text-gradient">
+                  Experience
+                </h3>
+                <p className="text-slate-500 text-sm mt-1">
+                  Professional journey and key contributions.
+                </p>
+              </motion.div>
+
               {EXPERIENCES.map((exp, i) => (
-                <motion.div
-                  key={exp.id}
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}>
+                <TimelineRow
+                  key={`exp-${exp.id}`}
+                  date={fmtMonthYear(exp.jointOn)}
+                  endDate="Present"
+                  color="cyan"
+                  index={i}>
                   <ExperienceCard experience={exp} />
-                </motion.div>
+                </TimelineRow>
+              ))}
+
+              {/* Education heading (blue, matching the education cards) */}
+              <motion.div
+                id="education"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5 }}
+                className={`${TL_ROW_PAD} pt-2 pb-7 scroll-mt-24`}>
+                <h3 className="text-2xl md:text-3xl font-black bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">
+                  Education
+                </h3>
+                <p className="text-slate-500 text-sm mt-1">
+                  Academic foundations.
+                </p>
+              </motion.div>
+
+              {EDUCATION.map((e, i) => (
+                <TimelineRow
+                  key={`edu-${e.id}-${i}`}
+                  date={fmtMonthYear(e.startDate)}
+                  endDate={fmtMonthYear(e.endDte)}
+                  color="blue"
+                  index={i}>
+                  <EducationCard education={e} />
+                </TimelineRow>
               ))}
             </div>
           </div>
@@ -509,8 +520,8 @@ export default function PortFolio() {
 
         <Divider color="cyan" />
 
-        {/* ════════ EDUCATION ════════ */}
-        <section id="education" className="py-24">
+        {/* ════════ CERTIFICATIONS & AWARDS ════════ */}
+        <section id="achievements" className="py-24">
           <div className="max-w-6xl mx-auto px-6">
             <motion.div
               initial="hidden"
@@ -518,22 +529,39 @@ export default function PortFolio() {
               viewport={{ once: true, margin: "-80px" }}
               variants={fadeUp}
               className="mb-12">
-              <h2 className="text-3xl md:text-4xl font-black text-gradient mb-2">
-                Education
+              <h2 className="text-3xl md:text-4xl font-black bg-gradient-to-r from-amber-500 to-rose-500 bg-clip-text text-transparent mb-2">
+                Certifications &amp; Awards
               </h2>
-              <p className="text-slate-500 text-sm">Academic foundations.</p>
+              <p className="text-slate-500 text-sm">
+                Credentials earned and recognition received.
+              </p>
+              <a
+                href={CREDLY_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold border border-amber-500/30 bg-amber-500/10 text-amber-600 dark:text-amber-400 hover:border-amber-500/60 transition-all">
+                <BadgeCheck size={14} /> View verified badges on Credly
+                <ExternalLink size={12} />
+              </a>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {EDUCATION.map((e, i) => (
-                <motion.div
-                  key={`${e.id}-${i}`}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.45, delay: i * 0.12 }}>
-                  <EducationCard education={e} />
-                </motion.div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {CERTIFICATIONS.map((c, i) => (
+                <CertificationCard
+                  key={`cert-${c.name}`}
+                  certification={c}
+                  index={i}
+                  onImageClick={setLightbox}
+                />
+              ))}
+
+              {AWARDS.map((a, i) => (
+                <AwardCard
+                  key={`award-${a.name}`}
+                  award={a}
+                  index={CERTIFICATIONS.length + i}
+                  onImageClick={setLightbox}
+                />
               ))}
             </div>
           </div>
@@ -583,7 +611,7 @@ export default function PortFolio() {
         {/* ════════ FOOTER ════════ */}
         <footer className="py-8 border-t border-slate-200 dark:border-white/8">
           <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="text-xs text-slate-400 dark:text-slate-500">
+            <div className="text-xs text-slate-500 dark:text-slate-400">
               © {new Date().getFullYear()}&nbsp;{YOUR_NAME}. Built with React +
               Vite + TypeScript.
             </div>
@@ -594,7 +622,7 @@ export default function PortFolio() {
                   href={s.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="p-2 rounded-lg text-slate-400 dark:text-slate-500 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors hover:bg-slate-100 dark:hover:bg-white/5"
+                  className="p-2 rounded-lg text-slate-500 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors hover:bg-slate-100 dark:hover:bg-white/5"
                   aria-label={s.name}>
                   <s.icon className="w-[15px] h-[15px]" />
                 </a>
@@ -603,6 +631,34 @@ export default function PortFolio() {
           </div>
         </footer>
       </main>
+
+      {/* Image lightbox modal */}
+      {lightbox && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={() => setLightbox(null)}
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 sm:p-8 cursor-zoom-out">
+          <button
+            type="button"
+            onClick={() => setLightbox(null)}
+            aria-label="Close"
+            className="absolute top-4 right-4 p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors">
+            <FiX size={20} />
+          </button>
+          <motion.img
+            key={lightbox}
+            src={lightbox}
+            alt="Preview"
+            initial={{ scale: 0.92, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.2 }}
+            onClick={(e) => e.stopPropagation()}
+            className="max-w-full max-h-[88vh] rounded-lg shadow-2xl object-contain cursor-default"
+          />
+        </motion.div>
+      )}
     </div>
   );
 }
